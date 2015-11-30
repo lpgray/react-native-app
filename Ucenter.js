@@ -3,30 +3,29 @@
 
 'use strict';
 
-var React = require('react-native');
-var UcenterPage = require('./UcenterPage');
+import React from 'react-native';
+import UcenterPage from './UcenterPage';
 
-var {
+let {
     StyleSheet,
     View,
     Text,
-    Component,
     NavigatorIOS
    } = React;
 
-var styles = StyleSheet.create({
-    description: {
+let styles = StyleSheet.create({
+    desc: {
         fontSize: 20,
         backgroundColor: 'white'
     },
-    container: {
+    ctn: {
         flex: 1,
         justifyContent: 'center',
         alignItems: 'center'
     }
 });
 
-class Tasks extends Component {
+let Tasks = React.createClass({
     render() {
         return (
             <NavigatorIOS
@@ -36,6 +35,6 @@ class Tasks extends Component {
                 }}/>
         );
     }
-}
+});
 
-module.exports = Tasks;
+export default Tasks;

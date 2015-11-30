@@ -3,35 +3,34 @@
 
 'use strict';
 
-var React = require('react-native');
+import React from 'react-native';
 
 var {
     StyleSheet,
     View,
-    Text,
-    Component
+    Text
    } = React;
 
 var styles = StyleSheet.create({
-    description: {
+    desc: {
         fontSize: 20,
         backgroundColor: 'white'
     },
-    container: {
+    ctn: {
         flex: 1,
         justifyContent: 'center',
         alignItems: 'center'
     }
 });
 
-class UcenterPage extends Component {
+let UcenterPage = React.createClass({
     render() {
         return (
-  	    <View style={styles.container}>
-	        <Text style={styles.description}>我</Text>
+  	    <View style={styles.ctn}>
+	        <Text style={styles.desc}>我</Text>
 	    </View>
         );
     }
-}
+});
 
-module.exports = UcenterPage;
+export default UcenterPage;

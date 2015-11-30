@@ -12,6 +12,10 @@ let listStyles = StyleSheet.create({
     ctn: {
         flex: 1,
         marginTop: 5
+    },
+    separator: {
+        height: 1,
+        backgroundColor: '#f5f5f5'
     }
 });
 let taskItemStyles = StyleSheet.create({
@@ -119,7 +123,8 @@ let TaskList = React.createClass({
                 style={listStyles.ctn}
                 dataSource={this.state.dataSource}
                 automaticallyAdjustContentInsets={false}
-                renderRow={this._renderRow} />
+                renderRow={this._renderRow}
+                renderSeparator={() => <View style={listStyles.separator}></View>}/>
         );
     }
 });

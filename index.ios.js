@@ -3,10 +3,10 @@
 
 'use strict';
 
-var React = require('react-native');
-var Tasks = require('./Tasks');
-var Ucenter = require('./Ucenter');
-var RCTIcons = require('react-native-icons');
+import React from 'react-native';
+import Tasks from './Tasks';
+import Ucenter from './Ucenter';
+import RCTIcons from 'react-native-icons';
 
 var {
     AppRegistry,
