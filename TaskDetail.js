@@ -3,7 +3,9 @@
 
 import React from 'react-native';
 import Server from './Server';
+import RCTIcons from 'react-native-icons';
 
+let {Icon} = RCTIcons;
 let {View, Text, StyleSheet, Image} = React;
 
 let TaskDetail = React.createClass({

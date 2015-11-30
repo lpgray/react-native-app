@@ -4,29 +4,24 @@
 'use strict';
 
 import React from 'react-native';
-import UcenterPage from './UcenterPage';
+import TaskList from './TaskList';
+import TaskDetail from './TaskDetail';
 import {NavigationBarRouteMapper, NavbarStyle} from './mixins';
 
-let {StyleSheet,View,Text,Navigator} = React;
-
-let styles = StyleSheet.create({
-    desc: {
-        fontSize: 20,
-        backgroundColor: 'white'
-    },
-    ctn: {
-        flex: 1,
-        justifyContent: 'center',
-        alignItems: 'center'
-    }
-});
+let {StyleSheet, Navigator, View} = React;
 
 let Tasks = React.createClass({
     _routeMapper(route, navigator) {
-        if (route.name === 'ucenter') {
+        if (route.name === 'tasks') {
             return (
                 <View style={NavbarStyle.scene}>
-                    <UcenterPage navigator={navigator}/>
+                    <TaskList navigator={navigator}/>
+                </View>
+            );
+        } else if (route.name === 'task-detail'){
+            return (
+                <View style={NavbarStyle.scene}>
+                    <TaskDetail id={route.id} navigator={navigator}/>
                 </View>
             );
         }
@@ -35,18 +30,14 @@ let Tasks = React.createClass({
     render() {
         return (
             <Navigator
-                initialRoute={{
-                    title:"个人中心",
-                    name: 'ucenter'
-                }}
+                initialRoute={{title:"任务", index: 0, name:"tasks"}}
                 renderScene={this._routeMapper}
                 navigationBar={
                     <Navigator.NavigationBar
                         routeMapper={NavigationBarRouteMapper}
                         style={NavbarStyle.navBar}
                     />
-                }
-            />
+            }/>
         );
     }
 });

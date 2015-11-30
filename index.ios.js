@@ -4,7 +4,7 @@
 'use strict';
 
 import React from 'react-native';
-import Tasks from './Tasks';
+import Task from './Task';
 import Ucenter from './Ucenter';
 import RCTIcons from 'react-native-icons';
 
@@ -16,7 +16,6 @@ var {
 var {TabBarIOS} = RCTIcons;
 
 class RCTScorer extends Component {
-
     constructor(props) {
         super(props);
         this.state = {
@@ -36,7 +35,7 @@ class RCTScorer extends Component {
                         });
                     }}
                     title='任务'>
-                    <Tasks/>
+                    <Task/>
                 </TabBarIOS.Item>
                 <TabBarIOS.Item
                     selected={this.state.selectedTab === 'ucenter'}

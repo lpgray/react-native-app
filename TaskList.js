@@ -45,9 +45,17 @@ let taskItemStyles = StyleSheet.create({
 });
 
 let TaskItem = React.createClass({
+    _onPress(id) {
+        this.props.navigator.push({
+            title: "任务详情",
+            name: 'task-detail',
+            id: this.props.id
+        });
+    },
+
     render() {
         return (
-            <TouchableHighlight onPress={this.props.onPress.bind(this, this.props.id)} underlayColor='rgba(0,0,0,.1)'>
+            <TouchableHighlight onPress={this._onPress.bind(this, this.props.id)} underlayColor='rgba(0,0,0,.1)'>
                 <View style={taskItemStyles.ctn}>
                     <Image style={taskItemStyles.img} source={{uri:this.props.thum}}/>
                     <View style={taskItemStyles.rightCtn}>
@@ -102,18 +110,8 @@ let TaskList = React.createClass({
         });
     },
 
-    _onItemPress(id) {
-        this.props.navigator.push({
-            title: "任务详情",
-            component: TaskDetail,
-            passProps: {
-                id: id
-            }
-        });
-    },
-
     _renderRow(rowData) {
-        return <TaskItem onPress={this._onItemPress} {...rowData}/>;
+        return <TaskItem navigator={this.props.navigator} {...rowData}/>;
     },
 
     render() {
