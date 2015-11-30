@@ -3,39 +3,31 @@
 
 'use strict';
 
-var React = require('react-native');
-var TaskList = require('./TaskList');
-
-var {
-    StyleSheet,
-    View,
-    Text,
-    Component,
-    NavigatorIOS
-   } = React;
-
-var styles = StyleSheet.create({
-    description: {
-        fontSize: 20,
-        backgroundColor: 'white'
-    },
-    container: {
+import React from 'react-native';
+import TaskList from './TaskList';
+let {StyleSheet, NavigatorIOS} = React;
+let styles = StyleSheet.create({
+    navWrap: {
         flex: 1,
-        justifyContent: 'center',
-        alignItems: 'center'
+        marginTop: 60
+    },
+    nav: {
+        flex: 1,
     }
 });
 
-class Tasks extends Component {
+let Tasks = React.createClass({
     render() {
         return (
       	    <NavigatorIOS
+                itemWrapperStyle={styles.navWrap}
+                style={styles.nav}
                 initialRoute={{
                     title:"任务",
                     component:TaskList
                 }}/>
         );
     }
-}
+});
 
-module.exports = Tasks;
+export default Tasks;
