@@ -40,7 +40,8 @@ let taskItemStyles = StyleSheet.create({
         padding: 3
     },
     rightCtn: {
-        flex: 1
+        flex: 1,
+        marginLeft: 10
     }
 });
 

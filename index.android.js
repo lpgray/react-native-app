@@ -1,33 +1,27 @@
-/**
- * Sample React Native App
- * https://github.com/facebook/react-native
- */
+/*jslint node: true, esnext: true */
+/* globals module, require */
 'use strict';
-
+import Task from './Task';
 var React = require('react-native');
 var {
   AppRegistry,
   StyleSheet,
   Text,
   View,
+  DrawerLayoutAndroid
 } = React;
 
 var RCTScorer = React.createClass({
-  render: function() {
-    return (
-      <View style={styles.container}>
-        <Text style={styles.welcome}>
-          Welcome to React Native!
-        </Text>
-        <Text style={styles.instructions}>
-          To get started, edit index.android.js
-        </Text>
-        <Text style={styles.instructions}>
-          Shake or press menu button for dev menu
-        </Text>
-      </View>
-    );
-  }
+    render: function() {
+      var navigationView = (
+        <View style={{flex: 1, backgroundColor: '#fff'}}>
+          <Text style={{margin: 10, fontSize: 15, textAlign: 'left'}}>I'm in the Drawer!</Text>
+        </View>
+      );
+      return (
+        <Task navigator={null}/>
+      );
+    },
 });
 
 var styles = StyleSheet.create({

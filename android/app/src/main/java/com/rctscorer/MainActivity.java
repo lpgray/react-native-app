@@ -1,5 +1,9 @@
 package com.rctscorer;
 
+import com.smixx.reactnativeicons.ReactNativeIcons;  // <--- import
+import java.util.Arrays; // <--- import this if you want to specify which fonts to load
+import com.smixx.reactnativeicons.IconFont; // <--- import this if you want to specify which fonts to load
+
 import android.app.Activity;
 import android.os.Bundle;
 import android.view.KeyEvent;
@@ -26,6 +30,7 @@ public class MainActivity extends Activity implements DefaultHardwareBackBtnHand
                 .setBundleAssetName("index.android.bundle")
                 .setJSMainModuleName("index.android")
                 .addPackage(new MainReactPackage())
+                .addPackage(new ReactNativeIcons())              // <------ add here
                 .setUseDeveloperSupport(BuildConfig.DEBUG)
                 .setInitialLifecycleState(LifecycleState.RESUMED)
                 .build();

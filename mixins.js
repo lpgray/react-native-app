@@ -77,7 +77,6 @@ let NavbarStyle = StyleSheet.create({
     },
     navBar: {
         backgroundColor: '#f8f8f8',
-        borderWidth: 1,
         borderColor: '#ccc'
     }
 });
