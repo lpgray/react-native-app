@@ -2,26 +2,69 @@
 /* globals module, require */
 'use strict';
 import Task from './Task';
-var React = require('react-native');
-var {
+import Ucenter from './Ucenter';
+import RCTIcons from 'react-native-icons';
+
+let {Icon} = RCTIcons;
+let React = require('react-native');
+let {
   AppRegistry,
   StyleSheet,
   Text,
   View,
-  DrawerLayoutAndroid
+  DrawerLayoutAndroid,
+  TouchableHighlight
 } = React;
 
-var RCTScorer = React.createClass({
-    render: function() {
-      var navigationView = (
-        <View style={{flex: 1, backgroundColor: '#fff'}}>
-          <Text style={{margin: 10, fontSize: 15, textAlign: 'left'}}>I'm in the Drawer!</Text>
+let RCTScorer = React.createClass({
+  getInitialState() {
+    return {index: 0};
+  },
+
+  _onMenuPress(index) {
+    this.setState({index});
+    this.refs.drawer.closeDrawer();
+  },
+
+  _onBarsPress() {
+    this.refs.drawer.openDrawer();
+  },
+
+  render() {
+    var navigationView = (
+      <View style={{flex: 1, backgroundColor: '#fff'}}>
+        <View style={{margin: 14}}>
+          <Text style={{fontWeight: '500', fontSize: 20}}>RCTApp</Text>
         </View>
-      );
-      return (
-        <Task navigator={null}/>
-      );
-    },
+        <TouchableHighlight onPress={this._onMenuPress.bind(this, 0)}>
+          <View style={styles.menuItem}>
+            <Icon size={16} name="fontawesome|tasks" style={styles.icon}/>
+            <Text style={styles.menuItemText}>任务</Text>
+          </View>
+        </TouchableHighlight>
+        <TouchableHighlight onPress={this._onMenuPress.bind(this, 1)}>
+          <View style={styles.menuItem}>
+            <Icon size={16} name="fontawesome|user" style={styles.icon}/>
+            <Text style={styles.menuItemText}>我</Text>
+          </View>
+        </TouchableHighlight>
+      </View>
+    );
+
+    var view = <Task onBarsPress={this._onBarsPress}/>;
+    if (this.state.index === 1) {
+      view = <Ucenter onBarsPress={this._onBarsPress}/>;
+    }
+    return (
+      <DrawerLayoutAndroid
+        drawerWidth={200}
+        ref={'drawer'}
+        drawerPosition={DrawerLayoutAndroid.positions.Left}
+        renderNavigationView={() => navigationView}>
+        {view}
+      </DrawerLayoutAndroid>
+    );
+  },
 });
 
 var styles = StyleSheet.create({
@@ -41,6 +84,26 @@ var styles = StyleSheet.create({
     color: '#333333',
     marginBottom: 5,
   },
+  menuItem: {
+    height: 40,
+    backgroundColor: '#fff',
+    marginLeft: 10,
+    marginRight: 10,
+    flexDirection: 'row',
+    borderColor: '#eee',
+    borderBottomWidth: 1,
+    alignItems: 'center'
+  },
+  menuItemText: {
+    marginLeft: 10,
+    fontSize: 14,
+    flex: 1
+  },
+  icon: {
+    width: 20,
+    height: 20,
+    marginLeft: 10
+  }
 });
 
 AppRegistry.registerComponent('RCTScorer', () => RCTScorer);

@@ -11,35 +11,40 @@ import {NavigationBarRouteMapper, NavbarStyle} from './mixins';
 let {StyleSheet, Navigator, View} = React;
 
 let Tasks = React.createClass({
-    _routeMapper(route, navigator) {
-        if (route.name === 'tasks') {
-            return (
-                <View style={NavbarStyle.scene}>
-                    <TaskList navigator={navigator}/>
-                </View>
-            );
-        } else if (route.name === 'task-detail'){
-            return (
-                <View style={NavbarStyle.scene}>
-                    <TaskDetail id={route.id} navigator={navigator}/>
-                </View>
-            );
-        }
-    },
-
-    render() {
-        return (
-            <Navigator
-                initialRoute={{title:"任务", index: 0, name:"tasks"}}
-                renderScene={this._routeMapper}
-                navigationBar={
-                    <Navigator.NavigationBar
-                        routeMapper={NavigationBarRouteMapper}
-                        style={NavbarStyle.navBar}
-                    />
-            }/>
-        );
+  _routeMapper(route, navigator) {
+    if (route.name === 'tasks') {
+      return (
+        <View style={NavbarStyle.scene}>
+          <TaskList navigator={navigator}/>
+        </View>
+      );
+    } else if (route.name === 'task-detail'){
+      return (
+        <View style={NavbarStyle.scene}>
+          <TaskDetail id={route.id} navigator={navigator}/>
+        </View>
+      );
     }
-});
+  },
 
-export default Tasks;
+  _onBarsPress() {
+    if (this.props.onBarsPress) {
+      this.props.onBarsPress();
+    }
+  },
+
+  render() {
+    return (
+      <Navigator
+        initialRoute={{title:"任务", index: 0, name:"tasks"}}
+        renderScene={this._routeMapper}
+        navigationBar={
+          <Navigator.NavigationBar
+            routeMapper={NavigationBarRouteMapper(this)}
+            style={NavbarStyle.navBar}/>
+        }/>
+      );
+    }
+  });
+
+  export default Tasks;
