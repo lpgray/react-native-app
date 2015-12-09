@@ -95,6 +95,7 @@ let NavbarStyle = StyleSheet.create({
   scene: {
     flex: 1,
     marginTop: (Platform.OS === 'ios') ? 60 : 46,
+    marginBottom: (Platform.OS === 'ios') ? 40 : 0,
     backgroundColor: '#fff'
   },
   navBar: {

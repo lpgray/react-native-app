@@ -102,6 +102,14 @@ let TaskList = React.createClass({
     //     rowIDs.push(item.id);
     //     dataBlob['DEFAULT:' + item.id] = item;
     // });
+    this._reloadData();
+  },
+
+  _renderRow(rowData) {
+    return <TaskItem navigator={this.props.navigator} {...rowData}/>;
+  },
+
+  _reloadData() {
     let _this = this;
     Server.getTasks(function(err, data){
       _this.setState({
@@ -109,10 +117,6 @@ let TaskList = React.createClass({
         loaded: true
       });
     });
-  },
-
-  _renderRow(rowData) {
-    return <TaskItem navigator={this.props.navigator} {...rowData}/>;
   },
 
   render() {
